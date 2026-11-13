@@ -1,0 +1,35 @@
+__okenni aplikace v MFC/VC++: bin2c/c2bin__
+
+smysl aplikace:
+
+vstupem je binarni soubor (libovolny), vystupem je *.cpp soubor s polem obsahujicim binarni data ze vstupniho souboru a obracene (vstup *.cpp s definici pole, vystupem binarni soubor)
+
+priklad:
+
+IN: soubor obsahujici 3 byte: 0x10, 0x56, 0x191
+
+OUT: soubor obsahujici:
+
+BYTE jmeno_vstupniho_souboru_bez_koncovky[3] = {
+
+            0x10, 0x56, 0x191
+
+};
+
+soucasti GUI musi byt:
+
+- 2 editboxy pro definici IN/OUT souboru, IN soubor se musi dat zvolit i openfile dialogem po stisku tlacitka, nazev OUT souboru se automaticky predvyplnuje, save as dialog mit nemusi (meni se jen koncovka - *.foo -> *.cpp, popripade *.cpp -> *.bin)
+
+- nejaky prvek (nemusi byt editovatelny, takze klidne listbox), ve kterem se objevuji informace o prave provadene cinnosti (velikost souboru, vstupni vystupni,... dle vlastni uvahy)
+
+radky v .cpp vystupu by mely byt zalamovany po 16ti prvcich .cpp vstup nemusi byt nijak extra kontrolovan - da se predpokladat, ze vzdy bude ve stejnem formatu jako OUT, pouze muze mit zalomeni po jinem poctu prvku, popripade nejake pradne radky navic.
+
+samotny kod (mimo MFC:)) nemusi byt objektovy, oldschool C bohate postaci, prosim nepouzivat CString.
+
+.cpp soubory budou v ASCII, netreba se nejak zabyvat UTF a spol.
+
+samotny proces prevodu prosim provadet v samostanem threadu, at nemrzne gui pri vetsich souborech
+
+posledni zadane IN/OUT soubory se ukladaji do registru, pri startu programu se z nich nacitaji
+
+ne vse je definovano v zadani presne, bude zapotrebi i improvizace, vlastnim vylepsenim se meze nekladou
